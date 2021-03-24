@@ -108,7 +108,7 @@ mybatis:
   #配置数据库表的实体类路径
   type-aliases-package: com.wuzhaojun.entity
 
-#日志
+#打印sql日志
 logging:
   level:
-    com.zbger.mapper: debug
+    com.wuzhaojun.mapper: debug

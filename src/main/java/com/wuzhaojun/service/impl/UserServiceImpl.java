@@ -3,6 +3,7 @@ package com.wuzhaojun.service.impl;
 import com.wuzhaojun.entity.UserEntity;
 import com.wuzhaojun.mapper.UserMapper;
 import com.wuzhaojun.service.UserService;
+import org.apache.tomcat.util.buf.UDecoder;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
@@ -39,5 +40,14 @@ public class UserServiceImpl implements UserService {
         List<UserEntity> userEntities = userMapper.testFind();
         System.out.println("测试");
         return userEntities;
+    }
+
+    @Override
+    public boolean updateUser(UserEntity userEntity) {
+        int update = userMapper.updateByPrimaryKeySelective(userEntity);
+        if (update>1){
+            return  true;
+        }
+        return false;
     }
 }

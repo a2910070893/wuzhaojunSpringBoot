@@ -29,4 +29,10 @@ public class UserController {
         List<UserEntity> user = userService.findUser();
         return user;
     }
+
+    @PostMapping("/updateUser")
+    public void updateUser(@RequestBody UserEntity userEntity){
+        userService.updateUser(userEntity);
+    }
+
 }

@@ -14,4 +14,5 @@ public interface UserService {
 
     public List<UserEntity> findUser();
 
+    public boolean updateUser(UserEntity userEntity);
 }

@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @Data
 @Table(name="user")
 public class UserEntity {
+    @Id
     @Column(name = "user_id")
     private String userId;
 

@@ -42,4 +42,11 @@ public class BlogController {
         BlogEntity idBlog = blogService.findIdBlog(id);
         return idBlog;
     }
+
+    @DeleteMapping("/deleteBlog/{id}")
+    public Boolean deleteBlog(@PathVariable("id") String id){
+        Boolean deleteBlog = blogService.deleteBlog(id);
+        return deleteBlog;
+
+    }
 }

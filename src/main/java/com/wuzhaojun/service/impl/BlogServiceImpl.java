@@ -49,4 +49,13 @@ public class BlogServiceImpl implements BlogService {
         return blogEntity;
     }
 
+    @Override
+    public Boolean deleteBlog(String id) {
+        int i = blogMapper.deleteByPrimaryKey(id);
+        if (i<=0){
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -17,4 +17,6 @@ public interface BlogService {
     Boolean updateBlog(BlogEntity blogEntity);
 
     BlogEntity findIdBlog(String id);
+
+    Boolean deleteBlog(String id);
 }

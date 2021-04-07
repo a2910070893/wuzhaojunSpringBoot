@@ -33,4 +33,20 @@ public class BlogServiceImpl implements BlogService {
         return true;
     }
 
+    @Override
+    public Boolean updateBlog(BlogEntity blogEntity) {
+        int i = blogMapper.updateByPrimaryKeySelective(blogEntity);
+        if (i<=0){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public BlogEntity findIdBlog(String  id) {
+        BlogEntity blogEntity = blogMapper.selectByPrimaryKey(id);
+
+        return blogEntity;
+    }
+
 }

@@ -11,5 +11,10 @@ import java.util.List;
  */
 public interface BlogService {
     List<BlogEntity> findAllBlog();
+
     Boolean insertBlog(BlogEntity blogEntity);
+
+    Boolean updateBlog(BlogEntity blogEntity);
+
+    BlogEntity findIdBlog(String id);
 }

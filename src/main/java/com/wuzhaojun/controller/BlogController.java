@@ -31,4 +31,15 @@ public class BlogController {
         return aBoolean;
     }
 
+    @PostMapping("/updateBlog")
+    public Boolean updateBlog(@RequestBody BlogEntity blogEntity){
+        Boolean aBoolean = blogService.updateBlog(blogEntity);
+        return aBoolean;
+    }
+
+    @GetMapping("/findIdBlog/{id}")
+    public BlogEntity findIdBlog(@PathVariable("id") String id){
+        BlogEntity idBlog = blogService.findIdBlog(id);
+        return idBlog;
+    }
 }

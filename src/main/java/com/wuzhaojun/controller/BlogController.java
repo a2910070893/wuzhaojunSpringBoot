@@ -1,10 +1,12 @@
 package com.wuzhaojun.controller;
 
+import com.mysql.cj.Session;
 import com.wuzhaojun.entity.BlogEntity;
 import com.wuzhaojun.service.BlogService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -38,9 +40,14 @@ public class BlogController {
     }
 
     @GetMapping("/findIdBlog/{id}")
-    public BlogEntity findIdBlog(@PathVariable("id") String id){
+//    public BlogEntity findIdBlog(@PathVariable("id") String id, HttpSession session){
+    public Boolean findIdBlog(@PathVariable("id") String id, HttpSession session){
+        session.setAttribute("loginUser" ,"username");
         BlogEntity idBlog = blogService.findIdBlog(id);
-        return idBlog;
+        if (idBlog !=null){
+            return true;
+        }
+        return false;
     }
 
     @DeleteMapping("/deleteBlog/{id}")

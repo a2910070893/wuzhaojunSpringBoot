@@ -1,6 +1,5 @@
 package com.wuzhaojun.controller;
 
-import com.mysql.cj.Session;
 import com.wuzhaojun.entity.BlogEntity;
 import com.wuzhaojun.service.BlogService;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,8 @@ import java.util.List;
  * @description:
  * @date 2021/4/1 10:39
  */
-@CrossOrigin
+//@CrossOrigin(origins = "http://localhost:8081",allowCredentials = "true")
+
 @RequestMapping("/blog")
 @RestController
 public class BlogController {
@@ -43,11 +43,13 @@ public class BlogController {
 //    public BlogEntity findIdBlog(@PathVariable("id") String id, HttpSession session){
     public Boolean findIdBlog(@PathVariable("id") String id, HttpSession session){
         session.setAttribute("loginUser" ,"username");
+        System.out.println(session.getAttribute("loginUser"));
         BlogEntity idBlog = blogService.findIdBlog(id);
         if (idBlog !=null){
             return true;
         }
         return false;
+//        return idBlog;
     }
 
     @DeleteMapping("/deleteBlog/{id}")

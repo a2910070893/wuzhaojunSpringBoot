@@ -2,6 +2,7 @@ package com.wuzhaojun.service;
 
 import com.wuzhaojun.entity.UserEntity;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -15,4 +16,8 @@ public interface UserService {
     public List<UserEntity> findUser();
 
     public boolean updateUser(UserEntity userEntity);
+
+    public Boolean login(UserEntity userEntity, HttpSession session);
+
+    public Boolean signOut(HttpSession session);
 }

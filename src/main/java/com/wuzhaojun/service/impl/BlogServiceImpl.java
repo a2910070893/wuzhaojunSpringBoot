@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import com.power.common.util.UUIDUtil;
 
 /**
  * @author EternalPain
@@ -26,6 +29,13 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Boolean insertBlog(BlogEntity blogEntity) {
+
+
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        blogEntity.setBlogId(UUIDUtil.getUuid32());
+        blogEntity.setBlogReleaseTime(java.sql.Date.valueOf(sdf.format(date)));
         int i = blogMapper.insertSelective(blogEntity);
         if (i<=0){
             return false;
@@ -35,6 +45,11 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Boolean updateBlog(BlogEntity blogEntity) {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        blogEntity.setBlogUpdateTime(java.sql.Date.valueOf(sdf.format(date)));
+
         int i = blogMapper.updateByPrimaryKeySelective(blogEntity);
         if (i<=0){
             return false;

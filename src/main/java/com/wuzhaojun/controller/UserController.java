@@ -5,6 +5,7 @@ import com.wuzhaojun.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -14,7 +15,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/user")
-@CrossOrigin
 public class UserController {
 
     @Resource
@@ -33,6 +33,24 @@ public class UserController {
     @PostMapping("/updateUser")
     public void updateUser(@RequestBody UserEntity userEntity){
         userService.updateUser(userEntity);
+    }
+
+    /**
+     * 登录
+     * @param userEntity
+     * @param session
+     * @return
+     */
+    @PostMapping("/login")
+    public Boolean login(@RequestBody UserEntity userEntity, HttpSession session){
+        Boolean login = userService.login(userEntity,session);
+        return login;
+    }
+
+    @GetMapping("/signOut")
+    public Boolean signOut(HttpSession session){
+        Boolean aBoolean = userService.signOut(session);
+        return aBoolean;
     }
 
 }

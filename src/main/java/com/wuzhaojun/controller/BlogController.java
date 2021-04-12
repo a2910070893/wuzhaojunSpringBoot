@@ -13,8 +13,6 @@ import java.util.List;
  * @description:
  * @date 2021/4/1 10:39
  */
-//@CrossOrigin(origins = "http://localhost:8081",allowCredentials = "true")
-
 @RequestMapping("/blog")
 @RestController
 public class BlogController {
@@ -40,16 +38,15 @@ public class BlogController {
     }
 
     @GetMapping("/findIdBlog/{id}")
-//    public BlogEntity findIdBlog(@PathVariable("id") String id, HttpSession session){
-    public Boolean findIdBlog(@PathVariable("id") String id, HttpSession session){
-        session.setAttribute("loginUser" ,"username");
-        System.out.println(session.getAttribute("loginUser"));
+    public BlogEntity findIdBlog(@PathVariable("id") String id, HttpSession session){
+//    public Boolean findIdBlog(@PathVariable("id") String id, HttpSession session){
+
         BlogEntity idBlog = blogService.findIdBlog(id);
-        if (idBlog !=null){
-            return true;
-        }
-        return false;
-//        return idBlog;
+//        if (idBlog !=null){
+//            return true;
+//        }
+//        return false;
+        return idBlog;
     }
 
     @DeleteMapping("/deleteBlog/{id}")

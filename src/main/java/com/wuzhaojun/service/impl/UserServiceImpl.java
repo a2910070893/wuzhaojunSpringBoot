@@ -9,6 +9,7 @@ import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import javax.lang.model.type.ArrayType;
+import javax.servlet.http.HttpSession;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
@@ -48,6 +49,32 @@ public class UserServiceImpl implements UserService {
         if (update>1){
             return  true;
         }
+        return false;
+    }
+
+    /**
+     * 登录
+     * @param userEntity
+     * @return
+     */
+    @Override
+    public Boolean login(UserEntity userEntity, HttpSession session) {
+
+        List<UserEntity> userEntities = userMapper.selectAll();
+        for (UserEntity entity : userEntities) {
+            if (userEntity.getUserName().equals(entity.getUserName()) && userEntity.getPassword().equals(entity.getPassword())){
+                session.setAttribute("loginUser" ,entity.getUserName());
+
+                System.out.println(session.getAttribute("loginUser"));
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean signOut(HttpSession session) {
+        session.removeAttribute("loginUser");
         return false;
     }
 }

@@ -18,7 +18,14 @@ public class UserEntity {
     @Column(name = "user_id")
     private String userId;
 
+
+    @Column(name = "user_name")
+    private String userName;
+
     @Column(name = "password")
     private String password;
 
+    //权限
+    @Column(name = "jurisdiction")
+    private String jurisdiction;
 }

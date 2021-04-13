@@ -19,4 +19,8 @@ public interface BlogService {
     BlogEntity findIdBlog(String id);
 
     Boolean deleteBlog(String id);
+
+    Boolean shareBlog(String id,String code);
+
+    List<BlogEntity> shareAllBlog();
 }

@@ -38,4 +38,11 @@ public class BlogEntity {
     @Column(name = "blog_update_time")
     private Date blogUpdateTime;
 
+    @Column(name = "blog_share")
+    private String blogShare;
+
+    @Column(name = "blog_share_text")
+    private String blogShareText;
+
+
 }

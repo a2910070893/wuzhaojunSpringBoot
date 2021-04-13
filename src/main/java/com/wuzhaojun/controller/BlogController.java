@@ -55,4 +55,16 @@ public class BlogController {
         return deleteBlog;
 
     }
+
+    @GetMapping("/shareBlog/{id}/{code}")
+    public Boolean shareBlog(@PathVariable("id") String id,@PathVariable("code") String code){
+        Boolean aBoolean = blogService.shareBlog(id,code);
+        return aBoolean;
+    }
+
+    @GetMapping("/shareAllBlog")
+    public List<BlogEntity> shareAllBlog(){
+        List<BlogEntity> allBlog = blogService.shareAllBlog();
+        return allBlog;
+    }
 }

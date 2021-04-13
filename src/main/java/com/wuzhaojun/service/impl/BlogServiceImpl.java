@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import com.power.common.util.UUIDUtil;
+import tk.mybatis.mapper.entity.Example;
 
 /**
  * @author EternalPain
@@ -36,6 +37,9 @@ public class BlogServiceImpl implements BlogService {
 
         blogEntity.setBlogId(UUIDUtil.getUuid32());
         blogEntity.setBlogReleaseTime(java.sql.Date.valueOf(sdf.format(date)));
+        //默认不分享
+        blogEntity.setBlogShare("0");
+        blogEntity.setBlogShareText("未分享");
         int i = blogMapper.insertSelective(blogEntity);
         if (i<=0){
             return false;
@@ -71,6 +75,36 @@ public class BlogServiceImpl implements BlogService {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public Boolean shareBlog(String id,String code) {
+        BlogEntity blogEntity = new BlogEntity();
+        blogEntity.setBlogId(id);
+        if ("1".equals(code)){
+            blogEntity.setBlogShare("0");
+            blogEntity.setBlogShareText("已分享");
+        }else {
+            blogEntity.setBlogShare("1");
+            blogEntity.setBlogShareText("未分享");
+        }
+        blogEntity.setBlogShare(code);
+        int i = blogMapper.updateByPrimaryKeySelective(blogEntity);
+        if (i<=0){
+            return false;
+        }
+        return true;
+    }
+    /**
+     * 博客分享展示
+     */
+    @Override
+    public List<BlogEntity> shareAllBlog() {
+        Example example = new Example(BlogEntity.class);
+        example.createCriteria().andEqualTo("blogShare","1");
+        List<BlogEntity> blogEntities = blogMapper.selectByExample(example);
+
+        return blogEntities;
     }
 
 }

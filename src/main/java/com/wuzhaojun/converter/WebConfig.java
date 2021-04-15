@@ -23,7 +23,8 @@ public class WebConfig extends WebMvcConfigurationSupport {
                 "/webjars/**",
                 "/error/**",
                 "/user/login/**",
-                "/blog/shareAllBlog"
+                "/blog/shareAllBlog",
+                "/blog/shareIdBlog/**",
                 //"/blog/**"
 
         };

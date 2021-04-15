@@ -67,4 +67,11 @@ public class BlogController {
         List<BlogEntity> allBlog = blogService.shareAllBlog();
         return allBlog;
     }
+
+    @GetMapping("/shareIdBlog/{id}")
+    public BlogEntity shareIdBlog(@PathVariable("id") String id){
+        BlogEntity idBlog = blogService.shareIdBlog(id);
+        return idBlog;
+    }
+
 }

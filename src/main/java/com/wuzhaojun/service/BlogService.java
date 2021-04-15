@@ -23,4 +23,6 @@ public interface BlogService {
     Boolean shareBlog(String id,String code);
 
     List<BlogEntity> shareAllBlog();
+
+    BlogEntity shareIdBlog(String id);
 }

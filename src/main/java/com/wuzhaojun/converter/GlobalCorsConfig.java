@@ -1,4 +1,4 @@
-package com.wuzhaojun.controller;
+package com.wuzhaojun.converter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

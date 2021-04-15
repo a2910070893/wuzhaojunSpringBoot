@@ -107,4 +107,15 @@ public class BlogServiceImpl implements BlogService {
         return blogEntities;
     }
 
+    @Override
+    public BlogEntity shareIdBlog(String id) {
+        Example example = new Example(BlogEntity.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("blogShare","1");
+        criteria.andEqualTo("blogId",id);
+        BlogEntity blogEntity = blogMapper.selectOneByExample(example);
+
+        return  blogEntity;
+    }
+
 }

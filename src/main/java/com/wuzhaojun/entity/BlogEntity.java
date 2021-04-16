@@ -44,5 +44,9 @@ public class BlogEntity {
     @Column(name = "blog_share_text")
     private String blogShareText;
 
+    //博客的用户名
+    @Column(name = "blog_user")
+    private String blogUser;
+
 
 }

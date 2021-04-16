@@ -23,8 +23,11 @@ public class BlogServiceImpl implements BlogService {
     @Resource
     private BlogMapper blogMapper;
     @Override
-    public List<BlogEntity> findAllBlog() {
-        List<BlogEntity> blogEntities = blogMapper.selectAll();
+    public List<BlogEntity> findAllBlog(String userName) {
+        Example example = new Example(BlogEntity.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("blogUser",userName);
+        List<BlogEntity> blogEntities = blogMapper.selectByExample(example);
         return blogEntities;
     }
 

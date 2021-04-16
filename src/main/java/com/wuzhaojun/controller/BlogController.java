@@ -19,9 +19,9 @@ public class BlogController {
     @Resource
     private BlogService blogService;
 
-    @GetMapping("/findAllBlog")
-    public List<BlogEntity> findAllBlog(){
-        List<BlogEntity> allBlog = blogService.findAllBlog();
+    @GetMapping("/findAllBlog/{userName}")
+    public List<BlogEntity> findAllBlog( @PathVariable("userName") String userName){
+        List<BlogEntity> allBlog = blogService.findAllBlog(userName);
         return allBlog;
     }
 

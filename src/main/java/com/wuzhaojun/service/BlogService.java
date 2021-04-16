@@ -10,7 +10,7 @@ import java.util.List;
  * @date 2021/4/1 10:37
  */
 public interface BlogService {
-    List<BlogEntity> findAllBlog();
+    List<BlogEntity> findAllBlog(String userName);
 
     Boolean insertBlog(BlogEntity blogEntity);
 

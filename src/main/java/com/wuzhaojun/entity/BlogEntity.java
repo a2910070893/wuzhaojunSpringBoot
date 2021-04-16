@@ -48,5 +48,8 @@ public class BlogEntity {
     @Column(name = "blog_user")
     private String blogUser;
 
+    @Column(name = "blog_author")
+    private String blogAuthor;
+
 
 }

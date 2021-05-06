@@ -1,11 +1,14 @@
 package com.wuzhaojun.service.impl;
 
+import com.power.common.util.UUIDUtil;
 import com.wuzhaojun.entity.UserEntity;
 import com.wuzhaojun.mapper.UserMapper;
 import com.wuzhaojun.service.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.buf.UDecoder;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
+import tk.mybatis.mapper.util.StringUtil;
 
 import javax.annotation.Resource;
 import javax.lang.model.type.ArrayType;
@@ -13,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author EternalPain
@@ -75,6 +79,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean signOut(HttpSession session) {
         session.removeAttribute("loginUser");
+        return false;
+    }
+
+    @Override
+    public boolean register(UserEntity userEntity) {
+        Example example = new Example(UserEntity.class);
+        example.createCriteria().andEqualTo("userName",userEntity.getUserName());
+        int i = userMapper.selectCountByExample(example);
+
+        if (i==0) {
+            userEntity.setUserId(UUIDUtil.getUuid32());
+            userEntity.setJurisdiction("0");
+            int insert = userMapper.insert(userEntity);
+            if (insert>0){
+                return true;
+            }
+            return false;
+        }
+
         return false;
     }
 }

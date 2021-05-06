@@ -53,4 +53,16 @@ public class UserController {
         return aBoolean;
     }
 
+    /**
+     * 注册
+     * @param userEntity
+     */
+    @PostMapping("/register")
+    public Boolean register(@RequestBody UserEntity userEntity){
+        boolean register = userService.register(userEntity);
+        return register;
+    }
+
+
+
 }

@@ -20,4 +20,7 @@ public interface UserService {
     public Boolean login(UserEntity userEntity, HttpSession session);
 
     public Boolean signOut(HttpSession session);
+
+    public boolean register(UserEntity userEntity);
+
 }

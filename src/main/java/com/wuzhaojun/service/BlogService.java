@@ -11,7 +11,7 @@ import java.util.List;
  * @date 2021/4/1 10:37
  */
 public interface BlogService {
-    List<BlogEntity> findAllBlog(String userName);
+    BlogVO findAllBlog(String userName,int pageSize);
 
     Boolean insertBlog(BlogEntity blogEntity);
 
@@ -26,4 +26,8 @@ public interface BlogService {
     BlogVO shareAllBlog(int pageSize, int size);
 
     BlogEntity shareIdBlog(String id);
+
+    Boolean blogCollection(String code,String userName,String id);
+
+    BlogVO findAllBlogCollection(String userName,int pageSize);
 }

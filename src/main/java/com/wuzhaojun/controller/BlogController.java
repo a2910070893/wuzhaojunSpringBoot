@@ -3,6 +3,7 @@ package com.wuzhaojun.controller;
 import com.wuzhaojun.entity.BlogEntity;
 import com.wuzhaojun.service.BlogService;
 import com.wuzhaojun.vo.BlogVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -20,9 +21,9 @@ public class BlogController {
     @Resource
     private BlogService blogService;
 
-    @GetMapping("/findAllBlog/{userName}")
-    public List<BlogEntity> findAllBlog( @PathVariable("userName") String userName){
-        List<BlogEntity> allBlog = blogService.findAllBlog(userName);
+    @GetMapping("/findAllBlog/{userName}/{pageSize}")
+    public BlogVO findAllBlog( @PathVariable("userName") String userName,@PathVariable("pageSize") int pageSize){
+        BlogVO allBlog = blogService.findAllBlog(userName, pageSize);
         return allBlog;
     }
 
@@ -75,4 +76,16 @@ public class BlogController {
         return idBlog;
     }
 
+    //收藏或取消收藏
+    @GetMapping("/blogCollection/{code}/{userName}/{id}")
+    public Boolean blogCollection(@PathVariable("code") String code,@PathVariable("userName") String userName,@PathVariable("id") String id){
+        blogService.blogCollection(code,userName,id);
+        return null;
+    }
+
+    @GetMapping("/findAllBlogCollection/{userName}/{pageSize}")
+    public BlogVO findAllBlogCollection( @PathVariable("userName") String userName,@PathVariable("pageSize") int pageSize){
+        BlogVO allBlog = blogService.findAllBlogCollection(userName, pageSize);
+        return allBlog;
+    }
 }

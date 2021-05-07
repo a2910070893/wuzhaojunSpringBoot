@@ -51,4 +51,10 @@ public class BlogEntity {
     @Column(name = "blog_author")
     private String blogAuthor;
 
+    @Column(name = "blog_code_text")
+    private String blogCodeText;
+
+    @Column(name = "blog_user_id")
+    private String blogUserId;
+
 }

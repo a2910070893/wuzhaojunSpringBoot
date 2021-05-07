@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuzhaojun.mapper.BlogMapper">
+
+<select id="blogPage" resultType="com.wuzhaojun.vo.BlogCollectionVO">
+     select * from blog b join blog_collection bc on
+     bc.blog_collection_user = b.blogUserId
+     where blog_Share = #{blogShare} limit #{pageSize},#{size}
+</select>
+
+<select id="blogUserPage" resultType="com.wuzhaojun.entity.BlogEntity">
+     select * from blog where blog_user = #{blogUser} limit #{pageSize},5
+</select>
+
+<select id="findAllBlogCollection" resultType="com.wuzhaojun.entity.BlogEntity">
+     select * from blog where blog_user_id = #{blogUserId} and blog_code ="1" limit #{pageSize},5
+</select>
+</mapper>

@@ -1,8 +1,14 @@
 package com.wuzhaojun.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.power.common.util.StringUtil;
 import com.wuzhaojun.entity.BlogEntity;
 import com.wuzhaojun.mapper.BlogMapper;
 import com.wuzhaojun.service.BlogService;
+import com.wuzhaojun.vo.BlogVO;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -102,12 +108,22 @@ public class BlogServiceImpl implements BlogService {
      * 博客分享展示
      */
     @Override
-    public List<BlogEntity> shareAllBlog() {
+    public BlogVO shareAllBlog(int pageSize,int size) {
         Example example = new Example(BlogEntity.class);
         example.createCriteria().andEqualTo("blogShare","1");
-        List<BlogEntity> blogEntities = blogMapper.selectByExample(example);
 
-        return blogEntities;
+        List<BlogEntity> blogEntities = blogMapper.selectByExampleAndRowBounds(example, new RowBounds(pageSize - 1, size));
+
+        Example exampleCount = new Example(BlogEntity.class);
+        exampleCount.createCriteria().andEqualTo("blogShare","1");
+
+        int count = blogMapper.selectCountByExample(exampleCount);
+
+        BlogVO pageBlog = new BlogVO();
+        pageBlog.setBlogEntities(blogEntities);
+        pageBlog.setTotal(String.valueOf(count));
+
+        return pageBlog;
     }
 
     @Override

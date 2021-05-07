@@ -51,5 +51,4 @@ public class BlogEntity {
     @Column(name = "blog_author")
     private String blogAuthor;
 
-
 }

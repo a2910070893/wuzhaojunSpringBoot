@@ -2,6 +2,7 @@ package com.wuzhaojun.controller;
 
 import com.wuzhaojun.entity.BlogEntity;
 import com.wuzhaojun.service.BlogService;
+import com.wuzhaojun.vo.BlogVO;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -62,10 +63,10 @@ public class BlogController {
         return aBoolean;
     }
 
-    @GetMapping("/shareAllBlog")
-    public List<BlogEntity> shareAllBlog(){
-        List<BlogEntity> allBlog = blogService.shareAllBlog();
-        return allBlog;
+    @GetMapping("/shareAllBlog/{pageSize}/{size}")
+    public BlogVO shareAllBlog(@PathVariable("pageSize") int pageSize, @PathVariable("size") int size){
+        BlogVO blogVO = blogService.shareAllBlog(pageSize, size);
+        return blogVO;
     }
 
     @GetMapping("/shareIdBlog/{id}")

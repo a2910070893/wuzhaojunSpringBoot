@@ -1,6 +1,7 @@
 package com.wuzhaojun.service;
 
 import com.wuzhaojun.entity.BlogEntity;
+import com.wuzhaojun.vo.BlogVO;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public interface BlogService {
 
     Boolean shareBlog(String id,String code);
 
-    List<BlogEntity> shareAllBlog();
+    BlogVO shareAllBlog(int pageSize, int size);
 
     BlogEntity shareIdBlog(String id);
 }

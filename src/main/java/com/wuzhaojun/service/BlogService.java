@@ -23,7 +23,7 @@ public interface BlogService {
 
     Boolean shareBlog(String id,String code);
 
-    BlogVO shareAllBlog(int pageSize, int size);
+    BlogVO shareAllBlog(int pageSize, int size,String userName);
 
     BlogEntity shareIdBlog(String id);
 

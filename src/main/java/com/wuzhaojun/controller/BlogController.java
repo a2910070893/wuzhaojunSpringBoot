@@ -64,9 +64,9 @@ public class BlogController {
         return aBoolean;
     }
 
-    @GetMapping("/shareAllBlog/{pageSize}/{size}")
-    public BlogVO shareAllBlog(@PathVariable("pageSize") int pageSize, @PathVariable("size") int size){
-        BlogVO blogVO = blogService.shareAllBlog(pageSize, size);
+    @GetMapping("/shareAllBlog/{pageSize}/{size}/{userName}")
+    public BlogVO shareAllBlog(@PathVariable("pageSize") int pageSize, @PathVariable("size") int size,@PathVariable("userName") String userName){
+        BlogVO blogVO = blogService.shareAllBlog(pageSize, size,userName);
         return blogVO;
     }
 

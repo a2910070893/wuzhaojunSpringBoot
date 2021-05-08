@@ -41,5 +41,7 @@ public class BlogCollectionVO {
 
     private String blogCollectionUser;
 
-    private String blog_collection_code_text;
+    private String blogCollectionCodeText;
+
+    private String blogCollectionAndUser;
 }
